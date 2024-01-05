@@ -1,0 +1,75 @@
+name: CD Workflow - staging
+
+on:
+  workflow_dispatch:
+#    inputs:
+#      image_tag:
+#        description: "image tag to deploy on staging server"
+#        type: string
+
+jobs:
+  deploy:
+    name: Deploy Staging Server
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
+          mask-aws-account-id: no
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: ${{ steps.login-ecr.outputs.registry }}/nomini-fe-staging
+          tags: |
+            type=ref,event=branch
+            type=ref,event=tag
+
+      - name: Build and push image to Amazon ECR
+        uses: docker/build-push-action@v2
+        # id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          build-args: |
+            VITE_MODE=staging
+        #   cache-from: type=gha
+        #   cache-to: type=gha,mode=max
+
+      - name: Update docker Image # through Bastion Host
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_STAGING_HOST }}
+          username: ubuntu
+          key: ${{ secrets.REMOTE_SSH_KEY }}
+          port: 22
+          script: |
+            aws ecr get-login-password --region ap-northeast-2 | \
+            sudo docker login --username AWS --password-stdin 864493117148.dkr.ecr.ap-northeast-2.amazonaws.com
+            
+            export IMAGE_TAG=$(echo "${{ github.ref_name }}" | sed -e "s/refs\/heads\///g" | sed -e "s/\//-/g")
+
+            # replace image tag
+            sed -i "s/image: 864493117148.dkr.ecr.ap-northeast-2.amazonaws.com\/nomini-fe-staging\:[a-zA-Z0-9._-]*/image\: 864493117148.dkr.ecr.ap-northeast-2.amazonaws.com\/nomini-fe-staging\:$IMAGE_TAG/" docker-compose.yaml
+            sudo docker compose pull nomini-fe1
+            sudo docker compose up -d nomini-fe1
+            sleep 20
+            sudo docker compose up -d nomini-fe2
+            sudo docker image prune --all --force
