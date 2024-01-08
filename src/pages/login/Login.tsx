@@ -1,14 +1,12 @@
 import "./Login.css";
+import "./Login.css";
 
 import axios from "axios";
 import { useAtom } from "jotai";
 import { useNavigate } from "react-router-dom";
 import Navbar from "src/atoms/navbar/Navbar";
-import { useNavigate } from "react-router-dom";
-import "./Login.css";
 
 import { userEmailAtom, userPasswordAtom } from "../../utils/Atom";
-import { HOST } from "../../utils/Enums";
 const Login = () => {
   const [userEmail, setUserEmail] = useAtom(userEmailAtom);
   const [userPassword, setUserPassword] = useAtom(userPasswordAtom);
