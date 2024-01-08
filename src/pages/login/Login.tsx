@@ -3,13 +3,21 @@ import "./Login.css";
 
 import axios from "axios";
 import { useAtom } from "jotai";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "src/atoms/navbar/Navbar";
 
-import { userEmailAtom, userPasswordAtom } from "../../utils/Atom";
+import {
+  userEmailAtom,
+  userNameAtom,
+  userPasswordAtom,
+} from "../../utils/Atom";
 const Login = () => {
+  const [tempEmail, setTempEmail] = useState("");
+  const [tempPassword, setTempPassword] = useState("");
   const [userEmail, setUserEmail] = useAtom(userEmailAtom);
   const [userPassword, setUserPassword] = useAtom(userPasswordAtom);
+  const [name, setUserName] = useAtom(userNameAtom);
   const navigate = useNavigate();
   const api = axios.create({
     baseURL: "/api",
@@ -20,7 +28,15 @@ const Login = () => {
       email: userEmail,
       password: userPassword,
     };
-    const res = await api.post("/auth/login", data);
+    const res = await api.post("/auth/login", data).then((res) => {
+      if (res.status === 200) {
+        navigate("/");
+        setUserEmail(tempEmail);
+        setUserPassword(tempPassword);
+        setUserName("이름");
+        console.log("login success");
+      }
+    });
     console.log(res);
   };
   return (
@@ -32,7 +48,7 @@ const Login = () => {
           id="email"
           name="email"
           placeholder="Enter your email"
-          onChange={(e) => setUserEmail(e.target.value)}
+          onChange={(e) => setTempEmail(e.target.value)}
         />
       </div>
       <div className="form-container">
@@ -41,7 +57,7 @@ const Login = () => {
           id="password"
           name="password"
           placeholder="Enter your password"
-          onChange={(e) => setUserPassword(e.target.value)}
+          onChange={(e) => setTempPassword(e.target.value)}
         />
       </div>
 
