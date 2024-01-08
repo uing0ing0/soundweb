@@ -14,10 +14,10 @@ export default defineConfig({
     port: 3000, //3000번 포트로 개발 서버를 실행합니다.
     proxy: {
       //CORS 방지를 위한 프록시 설정입니다.
-      "/local": {
-        target: "https://your.api.domain.here", //실제 api 도메인을 넣어줍니다.
+      "/api": {
+        target: "https://dev-api.nomini.io", //실제 api 도메인을 넣어줍니다.
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/local/, ""), //target url을 교체합니다.
+        rewrite: (path) => path.replace(/^\/api/, ""), //target url을 교체합니다.
       },
     },
   },
