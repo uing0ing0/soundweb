@@ -2,6 +2,8 @@ import "./Login.css";
 
 import { useNavigate } from "react-router-dom";
 import Navbar from "src/atoms/navbar/Navbar";
+import { useNavigate } from "react-router-dom";
+import "./Login.css";
 
 const Login = () => {
   const navigate = useNavigate();
