@@ -1,16 +1,22 @@
 import axios from "axios";
 import { useAtom } from "jotai";
 
-import { userEmailAtom, userPasswordAtom } from "../../utils/Atom";
+import {
+  userEmailAtom,
+  userNameAtom,
+  userPasswordAtom,
+} from "../../utils/Atom";
 import { HOST } from "../../utils/Enums";
 const Login = () => {
   const [userEmail, setUserEmail] = useAtom(userEmailAtom);
   const [userPassword, setUserPassword] = useAtom(userPasswordAtom);
+  const [userName, setUserName] = useAtom(userNameAtom);
 
   const handleLogin = async () => {
     const data = {
       email: userEmail,
       password: userPassword,
+      name: userName,
     };
     const res = await axios.post(`${HOST.address}/auth/login`, data);
     console.log(res);

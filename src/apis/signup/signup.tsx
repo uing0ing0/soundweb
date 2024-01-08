@@ -1,42 +1,44 @@
 import axios from "axios";
-import { HOST } from "src/utils/Enums";
+import { useAtom } from "jotai";
 
-const Signup = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+import {
+  userEmailAtom,
+  userNameAtom,
+  userPasswordAtom,
+} from "../../utils/Atom";
+import { HOST } from "../../utils/Enums";
+const SignUp = () => {
+  const [userEmail, setUserEmail] = useAtom(userEmailAtom);
+  const [userPassword, setUserPassword] = useAtom(userPasswordAtom);
+  const [userName, setUserName] = useAtom(userNameAtom);
 
-  const handleSignup = async () => {
-    try {
-      const { data } = await axios.post(`${HOST.address}/auth/signup`, {
-        email,
-        password,
-      });
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
+  const handleLogin = async () => {
+    const data = {
+      email: userEmail,
+      password: userPassword,
+      name: userName,
+    };
+    const res = await axios.post(`/auth/login`, data);
+    console.log(res);
   };
 
   return (
     <div>
-      <h1>Signup</h1>
       <input
-        type="email"
+        type="text"
         placeholder="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        value={userEmail}
+        onChange={(e) => setUserEmail(e.target.value)}
       />
       <input
         type="password"
         placeholder="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        value={userPassword}
+        onChange={(e) => setUserPassword(e.target.value)}
       />
-      <button onClick={handleSignup}>Signup</button>
+      <button onClick={handleLogin}>로그인</button>
     </div>
   );
 };
-export default Signup;
-function useState(arg0: string): [any, any] {
-  throw new Error("Function not implemented.");
-}
+
+export default SignUp;

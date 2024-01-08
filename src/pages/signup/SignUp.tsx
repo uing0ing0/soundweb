@@ -1,31 +1,42 @@
-import "./Login.css";
-
 import axios from "axios";
 import { useAtom } from "jotai";
 import { useNavigate } from "react-router-dom";
 import Navbar from "src/atoms/navbar/Navbar";
 
-import { userEmailAtom, userPasswordAtom } from "../../utils/Atom";
-import { HOST } from "../../utils/Enums";
-const Login = () => {
+import {
+  userEmailAtom,
+  userNameAtom,
+  userPasswordAtom,
+} from "../../utils/Atom";
+const Signup = () => {
   const [userEmail, setUserEmail] = useAtom(userEmailAtom);
   const [userPassword, setUserPassword] = useAtom(userPasswordAtom);
-  const navigate = useNavigate();
+  const [name, setUserName] = useAtom(userNameAtom);
   const api = axios.create({
     baseURL: "/api",
     withCredentials: true,
   });
-  const handleLogin = async () => {
+  const handleSignUp = async () => {
     const data = {
       email: userEmail,
       password: userPassword,
+      name: name,
     };
-    const res = await api.post("/auth/login", data);
+    const res = await api.post("/auth/signup", data);
     console.log(res);
   };
   return (
     <div className="container">
       <Navbar />
+      <div className="form-container">
+        <input
+          type="name"
+          id="name"
+          name="name"
+          placeholder="Enter your name"
+          onChange={(e) => setUserName(e.target.value)}
+        />
+      </div>
       <div className="form-container">
         <input
           type="email"
@@ -46,26 +57,16 @@ const Login = () => {
       </div>
 
       <button
-        type="submit"
-        onClick={() => {
-          handleLogin();
-        }}
-        className="form-container"
-      >
-        Login
-      </button>
-
-      <button
         type="button"
         onClick={() => {
-          navigate("/signup");
+          handleSignUp();
         }}
         className="form-container"
       >
-        Create Account
+        회원가입
       </button>
     </div>
   );
 };
 
-export default Login;
+export default Signup;
