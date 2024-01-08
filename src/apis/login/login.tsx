@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useAtom } from "jotai";
-import React from "react";
 
 import { userEmailAtom, userPasswordAtom } from "../../utils/Atom";
 import { HOST } from "../../utils/Enums";
