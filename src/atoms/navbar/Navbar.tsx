@@ -27,6 +27,7 @@ const Navbar = () => {
       baseURL: "/api",
       withCredentials: true,
     });
+    console.log(userToken);
     const res = await api
       .post("/my/sign-out", {
         headers: {
