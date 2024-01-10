@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Navbar from "src/atoms/navbar/Navbar";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const Container = styled.div`
   width: 100vw;
@@ -60,13 +60,13 @@ const Text2 = styled.p`
   font-family: Arial, sans-serif;
 `;
 
-const handleLogo = () => {
-  console.log("Logo");
-  navigate("/main");
-};
-
 const Login = () => {
   const navigate = useNavigate();
+
+  const handleLogo = () => {
+    console.log("Logo");
+    navigate("/main");
+  };
 
   return (
     <Container>

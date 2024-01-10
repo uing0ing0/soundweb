@@ -3,6 +3,6 @@
   "compilerOptions": {
     "noEmit": true // prevent building with this configuration
   },
-  "include": ["src/**/*", "vite.config.ts"], // include all TypeScript files
+  "include": ["src/**/*", "vite.config.ts""tests",  ".eslintrc.js"], // include all TypeScript files
   "exclude": ["node_modules"] // don't exclude any TypeScript files
 }
