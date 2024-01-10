@@ -1,3 +1,4 @@
+
 import { useNavigate } from "react-router-dom";
 import Navbar from "src/atoms/navbar/Navbar";
 import styled from "styled-components";
@@ -60,6 +61,7 @@ const Text2 = styled.p`
   font-family: Arial, sans-serif;
 `;
 
+<<<<<<< HEAD
 const Login = () => {
   const navigate = useNavigate();
 
@@ -68,6 +70,31 @@ const Login = () => {
     navigate("/main");
   };
 
+=======
+const handleLogo = () => {
+  console.log("Logo");
+  navigate("/main");
+};
+
+
+import { userEmailAtom, userPasswordAtom } from "../../utils/Atom";
+const Login = () => {
+  const [userEmail, setUserEmail] = useAtom(userEmailAtom);
+  const [userPassword, setUserPassword] = useAtom(userPasswordAtom);
+  const navigate = useNavigate();
+  const api = axios.create({
+    baseURL: "/api",
+    withCredentials: true,
+  });
+  const handleLogin = async () => {
+    const data = {
+      email: userEmail,
+      password: userPassword,
+    };
+    const res = await api.post("/auth/login", data);
+    console.log(res);
+  };
+>>>>>>> 07b269714a3eaf6e362409acc9fdb88c9128f7b4
   return (
     <Container>
       <Navbar />
@@ -82,6 +109,7 @@ const Login = () => {
           id="email"
           name="email"
           placeholder="Enter your email"
+          onChange={(e) => setUserEmail(e.target.value)}
         />
       </FormContainer>
       <FormContainer>
@@ -91,12 +119,13 @@ const Login = () => {
           id="password"
           name="password"
           placeholder="Enter your password"
+          onChange={(e) => setUserPassword(e.target.value)}
         />
       </FormContainer>
 
       <Button
         onClick={() => {
-          navigate("/login");
+          handleLogin();
         }}
       >
         Login
@@ -104,7 +133,7 @@ const Login = () => {
 
       <Button
         onClick={() => {
-          navigate("/login");
+          navigate("/signup");
         }}
       >
         Create Account
