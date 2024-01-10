@@ -1,12 +1,18 @@
-import { useAtom } from "jotai";
 import axios from "axios";
+import { useAtom } from "jotai";
 import { useNavigate } from "react-router-dom";
-import { userNameAtom, userEmailAtom, userPasswordAtom } from "src/utils/Atom";
+import {
+  userEmailAtom,
+  userNameAtom,
+  userPasswordAtom,
+  userTokenAtom,
+} from "src/utils/Atom";
 const Navbar = () => {
   const navigate = useNavigate();
-  const [name, setUserName] = useAtom(userNameAtom);
   const [userPassword, setUserPassword] = useAtom(userEmailAtom);
   const [userEmail, setUserEmail] = useAtom(userPasswordAtom);
+  const [userToken, setUserToken] = useAtom(userTokenAtom);
+  const [userName, setUserName] = useAtom(userNameAtom);
   const handleLogin = () => {
     console.log("Login");
     navigate("/login");
@@ -21,15 +27,22 @@ const Navbar = () => {
       baseURL: "/api",
       withCredentials: true,
     });
-    const res = await api.post("/my/sign-out").then((res) => {
-      if (res.status === 200) {
-        setUserName("");
-        setUserPassword("");
-        setUserEmail("");
-        navigate("/");
-        console.log("logout");
-      }
-    });
+    const res = await api
+      .post("/my/sign-out", {
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+        },
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          setUserName("");
+          setUserPassword("");
+          setUserEmail("");
+          setUserToken("");
+          navigate("/");
+          console.log("logout");
+        }
+      });
   };
   return (
     <>
@@ -50,10 +63,12 @@ const Navbar = () => {
         </div>
         <div style={{ marginLeft: "auto" }}>
           {/* name이 비어있지 않으면 name을 보여주는 부분 */}
-          {name !== "" && <div onClick={handleLogout}>로그아웃</div>}
+          {userName !== "" && (
+            <div onClick={handleLogout}>로그아웃{userName}</div>
+          )}
 
           {/* login 버튼, name이 비어있을 때만 클릭 가능하도록 설정 */}
-          {name === "" && (
+          {userName === "" && (
             <div style={{ marginLeft: "auto" }} onClick={handleLogin}>
               로그인
             </div>

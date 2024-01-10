@@ -1,9 +1,9 @@
 import "./Login.css";
-import "./Login.css";
 
 import axios from "axios";
 import { useAtom } from "jotai";
 import { useState } from "react";
+import { set } from "react-ga";
 import { useNavigate } from "react-router-dom";
 import Navbar from "src/atoms/navbar/Navbar";
 
@@ -11,6 +11,7 @@ import {
   userEmailAtom,
   userNameAtom,
   userPasswordAtom,
+  userTokenAtom,
 } from "../../utils/Atom";
 const Login = () => {
   const [tempEmail, setTempEmail] = useState("");
@@ -18,6 +19,7 @@ const Login = () => {
   const [userEmail, setUserEmail] = useAtom(userEmailAtom);
   const [userPassword, setUserPassword] = useAtom(userPasswordAtom);
   const [name, setUserName] = useAtom(userNameAtom);
+  const [userToken, setUserToken] = useAtom(userTokenAtom);
   const navigate = useNavigate();
   const api = axios.create({
     baseURL: "/api",
@@ -28,16 +30,19 @@ const Login = () => {
       email: userEmail,
       password: userPassword,
     };
-    const res = await api.post("/auth/login", data).then((res) => {
-      if (res.status === 200) {
+    const res = await api.post("/auth/login", data).then((response) => {
+      if (response.status === 200) {
         navigate("/");
         setUserEmail(tempEmail);
         setUserPassword(tempPassword);
-        setUserName("이름");
+        setUserToken(response.data.data.token);
+        setUserName(response.data.data.name);
+        console.log(response.data);
         console.log("login success");
+        console.log(userToken);
+        console.log(name);
       }
     });
-    console.log(res);
   };
   return (
     <div className="container">
