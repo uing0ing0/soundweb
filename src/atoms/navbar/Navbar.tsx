@@ -29,8 +29,8 @@ const Navbar = () => {
     });
     console.log(userToken);
     const res = await api
-      .post("/my/sign-out", {
-        headers: { authorization: `Bearer ${userToken}` },
+      .post("/my/sign-out", null, {
+        headers: { Authorization: `Bearer ${userToken}` },
       })
       .then((res) => {
         if (res.status === 200) {
