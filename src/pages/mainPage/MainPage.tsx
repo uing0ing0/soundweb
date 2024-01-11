@@ -1,8 +1,6 @@
 import Navbar from "src/atoms/navbar/Navbar";
 
-//import Layout from "src/layout/layout";
-
-const Main = () => {
+const MainPage = () => {
   return (
     <div style={{ width: "100%", height: "100%" }}>
       <Navbar />
@@ -12,4 +10,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default MainPage;
