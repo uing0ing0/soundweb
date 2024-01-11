@@ -1,11 +1,12 @@
-import "./Login.css";
-
 import axios from "axios";
 import { useAtom } from "jotai";
 import { useState } from "react";
 import { set } from "react-ga";
 import { useNavigate } from "react-router-dom";
+import Button, { ButtonVariant } from "src/atoms/button/Button";
+import Flex from "src/atoms/containers/flex/Flex";
 import Navbar from "src/atoms/navbar/Navbar";
+import SearchInput from "src/atoms/searchInput/SearchInput";
 
 import {
   userEmailAtom,
@@ -45,47 +46,53 @@ const Login = () => {
     });
   };
   return (
-    <div className="container">
-      <Navbar />
-      <div className="form-container">
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Enter your email"
-          onChange={(e) => setTempEmail(e.target.value)}
-        />
-      </div>
-      <div className="form-container">
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Enter your password"
-          onChange={(e) => setTempPassword(e.target.value)}
-        />
-      </div>
+    <>
+      <Flex flexDirection="column" alignItems="center" gap="15px">
+        <Navbar />
+        <Button width={"250px"} variant={ButtonVariant.outlined}>
+          <SearchInput
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            onChange={(e) => setTempEmail(e.target.value)}
+          />
+        </Button>
+        <Button width={"250px"} variant={ButtonVariant.outlined}>
+          <SearchInput
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+            onChange={(e) => setTempPassword(e.target.value)}
+          />
+        </Button>
+        <Button
+          variant={ButtonVariant.contained}
+          width={"250px"}
+          height={"40px"}
+          type="submit"
+          onClick={() => {
+            handleLogin();
+          }}
+        >
+          Login
+        </Button>
 
-      <button
-        type="submit"
-        onClick={() => {
-          handleLogin();
-        }}
-        className="form-container"
-      >
-        Login
-      </button>
-
-      <button
-        type="button"
-        onClick={() => {
-          navigate("/signup");
-        }}
-        className="form-container"
-      >
-        Create Account
-      </button>
-    </div>
+        <Button
+          variant={ButtonVariant.contained}
+          width={"250px"}
+          height={"40px"}
+          type="button"
+          onClick={() => {
+            navigate("/signup");
+          }}
+          className="form-container"
+        >
+          Sign up
+        </Button>
+      </Flex>
+    </>
   );
 };
 
