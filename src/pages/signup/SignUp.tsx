@@ -30,7 +30,6 @@ const Signup = () => {
   };
   return (
     <div className="container">
-      <Navbar />
       <Flex flexDirection="column" alignItems="center" gap="15px">
         <Button variant={ButtonVariant.outlined}>
           <SearchInput
