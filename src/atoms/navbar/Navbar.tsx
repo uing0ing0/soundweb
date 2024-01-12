@@ -45,6 +45,10 @@ const Navbar = () => {
     console.log("Logo");
     navigate("/");
   };
+  const handleMake = () => {
+    console.log("Make");
+    navigate("/makecard");
+  };
   const handleLogout = async () => {
     console.log("Logout");
     const api = axios.create({
@@ -88,7 +92,7 @@ const Navbar = () => {
           </Flex>
         </StylelessLink>
         <MenuSum>
-          <Button variant={ButtonVariant.navbar}>
+          <Button variant={ButtonVariant.navbar} onClick={handleMake}>
             <Text>레전드해결책 만들기</Text>
           </Button>
           <Button variant={ButtonVariant.navbar}>
