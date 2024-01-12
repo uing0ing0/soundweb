@@ -7,6 +7,7 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
+import QuestionCard from "src/pages/questionCard/QuestionCard";
 
 import FindPw from "./pages/findPw/FindPw";
 import Login from "./pages/login/Login";
@@ -27,6 +28,7 @@ const router = createBrowserRouter(
       <Route path={"/signup"} element={<Signup />} />
       <Route path={"/mypage"} element={<Mypage />} />
       <Route path={"/findpw"} element={<FindPw />} />
+      <Route path={"/questioncard"} element={<QuestionCard />} />
     </Route>,
   ),
 );

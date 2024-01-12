@@ -3,11 +3,12 @@ import styled, { CSSProperties } from "styled-components";
 interface PanelProps {
   color?: CSSProperties["backgroundColor"];
 }
+import { useNavigate } from "react-router-dom";
+import Button, { ButtonVariant } from "src/atoms/button/Button";
 import Flex from "src/atoms/containers/flex/Flex";
 import Grid from "src/atoms/containers/grid/Grid";
 import Text from "src/atoms/text/Text";
 import colorSet from "src/styles/colorSet";
-import Button, { ButtonVariant } from "src/atoms/button/Button";
 const MainCard = styled.div<PanelProps>`
   background-color: ${({ color }) => color};
   border-radius: 16px;
@@ -22,8 +23,17 @@ const MainCard = styled.div<PanelProps>`
 `;
 
 const MainCardPic = () => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/questioncard");
+    console.log("click");
+  };
   return (
-    <MainCard color={"#fff"} style={{ width: "400px", height: "100px" }}>
+    <MainCard
+      color={"#fff"}
+      style={{ width: "400px", height: "100px" }}
+      onClick={handleClick}
+    >
       <Grid
         style={{ flexDirection: "column" }}
         gridTemplateColumns={"1fr 2fr"}
