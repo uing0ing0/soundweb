@@ -1,7 +1,10 @@
 import axios from "axios";
 import { useAtom } from "jotai";
+import Button, { ButtonVariant } from "src/atoms/button/Button";
+import Flex from "src/atoms/containers/flex/Flex";
 //import { useNavigate } from "react-router-dom";
 import Navbar from "src/atoms/navbar/Navbar";
+import SearchInput from "src/atoms/searchInput/SearchInput";
 
 import {
   userEmailAtom,
@@ -28,43 +31,47 @@ const Signup = () => {
   return (
     <div className="container">
       <Navbar />
-      <div className="form-container">
-        <input
-          type="name"
-          id="name"
-          name="name"
-          placeholder="Enter your name"
-          onChange={(e) => setUserName(e.target.value)}
-        />
-      </div>
-      <div className="form-container">
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Enter your email"
-          onChange={(e) => setUserEmail(e.target.value)}
-        />
-      </div>
-      <div className="form-container">
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Enter your password"
-          onChange={(e) => setUserPassword(e.target.value)}
-        />
-      </div>
-
-      <button
-        type="button"
-        onClick={() => {
-          handleSignUp();
-        }}
-        className="form-container"
-      >
-        회원가입
-      </button>
+      <Flex flexDirection="column" alignItems="center" gap="15px">
+        <Button variant={ButtonVariant.outlined}>
+          <SearchInput
+            type="name"
+            id="name"
+            name="name"
+            placeholder="Enter your name"
+            onChange={(e) => setUserName(e.target.value)}
+          />
+        </Button>
+        <Button variant={ButtonVariant.outlined}>
+          <SearchInput
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            onChange={(e) => setUserEmail(e.target.value)}
+          />
+        </Button>
+        <Button variant={ButtonVariant.outlined}>
+          <SearchInput
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+            onChange={(e) => setUserPassword(e.target.value)}
+          />
+        </Button>
+        <Button
+          width={"200px"}
+          height={"40px"}
+          variant={ButtonVariant.contained}
+          type="button"
+          onClick={() => {
+            handleSignUp();
+          }}
+          className="form-container"
+        >
+          회원가입
+        </Button>
+      </Flex>
     </div>
   );
 };
