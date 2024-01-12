@@ -48,7 +48,6 @@ const Login = () => {
   return (
     <>
       <Flex flexDirection="column" alignItems="center" gap="15px">
-        <Navbar />
         <Button width={"250px"} variant={ButtonVariant.outlined}>
           <SearchInput
             type="email"
