@@ -5,7 +5,6 @@ import { set } from "react-ga";
 import { useNavigate } from "react-router-dom";
 import Button, { ButtonVariant } from "src/atoms/button/Button";
 import Flex from "src/atoms/containers/flex/Flex";
-import Navbar from "src/atoms/navbar/Navbar";
 import SearchInput from "src/atoms/searchInput/SearchInput";
 import Text from "src/atoms/text/Text";
 
@@ -49,6 +48,7 @@ const Login = () => {
   return (
     <>
       <Flex flexDirection="column" alignItems="center" gap="15px">
+        <Text size={"2rem"}>비밀번호 찾기</Text>
         <Button width={"250px"} variant={ButtonVariant.outlined}>
           <SearchInput
             type="email"
@@ -56,15 +56,6 @@ const Login = () => {
             name="email"
             placeholder="Enter your email"
             onChange={(e) => setTempEmail(e.target.value)}
-          />
-        </Button>
-        <Button width={"250px"} variant={ButtonVariant.outlined}>
-          <SearchInput
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Enter your password"
-            onChange={(e) => setTempPassword(e.target.value)}
           />
         </Button>
         <Button
@@ -76,27 +67,7 @@ const Login = () => {
             handleLogin();
           }}
         >
-          로그인
-        </Button>
-
-        <Button
-          variant={ButtonVariant.contained}
-          width={"250px"}
-          height={"40px"}
-          type="button"
-          onClick={() => {
-            navigate("/signup");
-          }}
-          className="form-container"
-        >
-          회원가입
-        </Button>
-        <Button
-          onClick={() => {
-            navigate("/findpw");
-          }}
-        >
-          <Text>비밀번호 찾기</Text>
+          확인
         </Button>
       </Flex>
     </>

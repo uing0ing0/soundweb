@@ -7,7 +7,7 @@ const Layout = () => {
     <>
       <Navbar />
       <Outlet />
-      <Spacer height="5000px" />
+      <Spacer height="1000px" />
     </>
   );
 };

@@ -1,7 +1,6 @@
 import React from "react";
-import styled, { css } from "styled-components";
-
 import Font from "src/styles/Font";
+import styled, { css } from "styled-components";
 
 export interface TextProps {
   color?: React.CSSProperties["color"];
