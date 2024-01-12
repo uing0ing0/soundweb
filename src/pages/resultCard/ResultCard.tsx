@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Button, { ButtonVariant } from "src/atoms/button/Button";
 import Flex from "src/atoms/containers/flex/Flex";
+import Grid from "src/atoms/containers/grid/Grid";
 import Image from "src/atoms/image/Image";
 import SearchInput from "src/atoms/searchInput/SearchInput";
 import Text from "src/atoms/text/Text";
@@ -31,7 +32,7 @@ const BookCard = styled.div<PanelProps>`
   gap: 30px;
 `;
 
-const QuestionCard = () => {
+const ResultCard = () => {
   const navigate = useNavigate();
   const handleSubmit = () => {
     console.log("Submit");
@@ -43,32 +44,35 @@ const QuestionCard = () => {
         <BookCard width={"300px"} height={"400px"}>
           <Image src={"https://picsum.photos/200/350"} />
           <Text color={colorSet.secondaryText} size={"1.2rem"}>
-            진실은 언제나 빛나고 있어
+            네 운명에서 도망치지 마
           </Text>
         </BookCard>
-        <Flex
-          wrap={"nowrap"}
-          width={"320px"}
-          height={"40px"}
-          alignItems={"center"}
-          style={{
-            border: `2px solid ${colorSet.secondaryText}`,
-            padding: "0.1rem 1rem",
-            borderRadius: "1rem",
-          }}
+        <Button>
+          <Text size={"1.1rem"}>친구에게 답변 공유하기</Text>
+        </Button>
+        <Grid
+          alignItems={"stretch"}
+          justifyContent={"stretch"}
+          gap={"10px"}
+          gridTemplateColumns="repeat(4, 1fr)"
         >
-          <SearchInput placeholder="당신의 질문은?" />
-        </Flex>
-        <Button
-          onClick={handleSubmit}
-          width="350px"
-          variant={ButtonVariant.contained}
-        >
-          <Text size={"0.9rem"}>질문하기</Text>
+          <Button variant={ButtonVariant.outlined}>복사</Button>
+          <Button variant={ButtonVariant.outlined}>틔터</Button>
+          <Button variant={ButtonVariant.outlined}>페북</Button>
+          <Button variant={ButtonVariant.outlined}>카톡</Button>
+        </Grid>
+        <Button width="350px" variant={ButtonVariant.contained}>
+          <Text size={"0.9rem"}>또 질문하기</Text>
+        </Button>
+        <Button width="350px" variant={ButtonVariant.contained}>
+          <Text size={"0.9rem"}>해결책의 모든 답변보기</Text>
+        </Button>
+        <Button width="350px" variant={ButtonVariant.contained}>
+          <Text size={"0.9rem"}>다른 해결책에 질문하러 가기</Text>
         </Button>
       </Flex>
     </>
   );
 };
 
-export default QuestionCard;
+export default ResultCard;
