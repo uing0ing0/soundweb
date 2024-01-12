@@ -6,6 +6,7 @@ import SearchInput from "src/atoms/searchInput/SearchInput";
 import Text from "src/atoms/text/Text";
 import colorSet from "src/styles/colorSet";
 import styled, { CSSProperties } from "styled-components";
+
 interface PanelProps {
   color?: CSSProperties["backgroundColor"];
   width?: CSSProperties["width"];
