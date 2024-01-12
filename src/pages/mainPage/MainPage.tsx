@@ -1,12 +1,9 @@
-import Button, { ButtonVariant } from "src/atoms/button/Button";
 import MainCard from "src/atoms/components/mainCard/MainCard";
 import Flex from "src/atoms/containers/flex/Flex";
+import Grid from "src/atoms/containers/grid/Grid";
 import Icons from "src/atoms/icon/Icons";
-import Navbar from "src/atoms/navbar/Navbar";
 import SearchInput from "src/atoms/searchInput/SearchInput";
 import colorSet from "src/styles/colorSet";
-import Grid from "src/atoms/containers/grid/Grid";
-import MainCardPic from "src/atoms/components/mainCard/MainCard";
 const MainPage = () => {
   return (
     <Flex flexDirection="column" justifyContent="center" alignItems="center">
