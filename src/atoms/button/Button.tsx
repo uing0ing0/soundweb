@@ -6,6 +6,7 @@ import colorSet from "../../styles/colorSet";
 export enum ButtonVariant {
   outlined = "outlined",
   contained = "contained",
+  grey = "grey",
   navbar = "navbar",
   navbarChild = "navbarChild",
   taskItem = "taskItem",
@@ -56,7 +57,16 @@ const Button = styled.button<ButtonProps>`
         return css`
           background-color: ${colorSet.primary};
           color: ${colorSet.colorless};
-
+          margin-top: 10px;
+          :hover {
+            box-shadow: inset rgba(0, 0, 0, 0.15) 0px 0px 0px 40px;
+          }
+        `;
+      case ButtonVariant.grey:
+        return css`
+          background-color: ${colorSet.deselected};
+          color: ${colorSet.colorless};
+          margin-top: 10px;
           :hover {
             box-shadow: inset rgba(0, 0, 0, 0.15) 0px 0px 0px 40px;
           }

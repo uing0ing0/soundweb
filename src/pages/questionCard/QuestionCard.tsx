@@ -36,7 +36,7 @@ const QuestionCard = () => {
   const navigate = useNavigate();
   const handleSubmit = () => {
     console.log("Submit");
-    navigate("/resultcard");
+    navigate("/p2");
   };
   return (
     <>
@@ -44,7 +44,7 @@ const QuestionCard = () => {
         <BookCard width={"300px"} height={"400px"}>
           <Image src={"https://picsum.photos/200/350"} />
           <Text color={colorSet.secondaryText} size={"1.2rem"}>
-            진실은 언제나 빛나고 있어
+            진언제나 빛나고 있어
           </Text>
         </BookCard>
         <Flex
