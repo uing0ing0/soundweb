@@ -8,7 +8,7 @@
     "build": "tsc && vite build --mode ${VITE_MODE}",
     "preview": "vite preview",
     "lint": "eslint src/",
-    "predeploy": "CI= yarn build",
+    "predeploy": "CI='' yarn build",
     "deploy": "gh-pages -d build"
   },
   "dependencies": {
