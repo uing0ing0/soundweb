@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build --mode ${VITE_MODE}",
+    "build": "tsc && vite build --mode ${VITE_MODE} && CI= yarn build",
     "preview": "vite preview",
     "lint": "eslint src/",
-    "predeploy": "CI='' yarn build",
+    "predeploy": "CI= yarn build",
     "deploy": "gh-pages -d build"
   },
   "dependencies": {
@@ -18,7 +18,6 @@
     "i18next": "^23.2.8",
     "i18next-browser-languagedetector": "^7.0.1",
     "jotai": "^2.6.1",
-    "netlify-cli": "^17.14.0",
     "prettier": "^2.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
