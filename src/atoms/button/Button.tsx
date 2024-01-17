@@ -10,6 +10,8 @@ export enum ButtonVariant {
   navbar = "navbar",
   navbarChild = "navbarChild",
   taskItem = "taskItem",
+  x = "x",
+  o = "o",
 }
 
 interface ButtonProps {
@@ -57,16 +59,41 @@ const Button = styled.button<ButtonProps>`
         return css`
           background-color: ${colorSet.primary};
           color: ${colorSet.colorless};
-          margin-top: 10px;
+          border-radius: 25px;
+          position: absolute;
+          left: 50%;
+          transform: translate(-50%);
+          bottom: 70px;
+          :hover {
+            box-shadow: inset rgba(0, 0, 0, 0.15) 0px 0px 0px 40px;
+          }
+          justify-content: center;
+        `;
+
+      case ButtonVariant.o:
+        return css`
+          background-color: ${colorSet.primary};
+          color: ${colorSet.colorless};
+          border-radius: 25px;
+          position: absolute;
+
+          bottom: 70px;
+          transform: translate(5%);
+
           :hover {
             box-shadow: inset rgba(0, 0, 0, 0.15) 0px 0px 0px 40px;
           }
         `;
-      case ButtonVariant.grey:
+      case ButtonVariant.x:
         return css`
           background-color: ${colorSet.deselected};
           color: ${colorSet.colorless};
-          margin-top: 10px;
+          border-radius: 25px;
+          position: absolute;
+
+          bottom: 70px;
+          transform: translate(130%);
+
           :hover {
             box-shadow: inset rgba(0, 0, 0, 0.15) 0px 0px 0px 40px;
           }

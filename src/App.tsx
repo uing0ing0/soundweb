@@ -8,7 +8,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-import QuestionCard from "src/pages/questionCard/QuestionCard";
+//import QuestionCard from "src/pages/questionCard/QuestionCard";
 import P1 from "src/pages/p1/P1";
 import P2 from "src/pages/p2/P2";
 import P3 from "src/pages/p3/P3";

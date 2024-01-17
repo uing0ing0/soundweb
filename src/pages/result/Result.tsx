@@ -7,6 +7,7 @@ import Text from "src/atoms/text/Text";
 import colorSet from "src/styles/colorSet";
 import styled, { CSSProperties } from "styled-components";
 import Font from "src/styles/Font";
+import { RiLoader2Line } from "react-icons/ri";
 
 interface PanelProps {
   color?: CSSProperties["backgroundColor"];
@@ -14,10 +15,10 @@ interface PanelProps {
   height?: CSSProperties["height"];
 }
 const BookCard = styled.div<PanelProps>`
+  position: relative;
   background-color: ${({ color }) => color};
   border-radius: 16px;
-  padding: 16px;
-
+  padding: 0px;
   border: 3px solid #fff;
   box-shadow: ${({ color }) =>
     color
@@ -29,7 +30,7 @@ const BookCard = styled.div<PanelProps>`
   margin: 20px;
   align-items: center;
   justify-content: center;
-  padding: 25px;
+  padding: 30px;
   gap: 30px;
 `;
 
@@ -42,31 +43,43 @@ const QuestionCard = () => {
   return (
     <>
       <Flex flexDirection="column" alignItems="center" gap="20px">
-        <BookCard width={"300px"} height={"400px"}>
-          <Text color={colorSet.text} size={"1.8rem"} font={Font.Bold}>
+        <BookCard width={"300px"} height={"500px"}>
+          <Text
+            textAlign="left"
+            color={colorSet.text}
+            size={"1.3rem"}
+            font={Font.Bold}
+          >
+            <br />
+            설정단계
+            <br />
+          </Text>
+          <Text
+            textAlign="center"
+            color={colorSet.secondaryText}
+            size={"0.8rem"}
+            font={Font.Bold}
+          >
+            <br />
+            <br />
+            <br />
+            <br />
             <br />
             <br />
             결과 산출 중입니다
             <br />
             <br />
           </Text>
-
-          <Image
-            width={200}
-            src={
-              "https://static.wixstatic.com/media/4437ea_3509df33c40f401c9a7fd30e23801bdb~mv2.png/v1/fill/w_1159,h_586,al_c,q_90,enc_auto/4437ea_3509df33c40f401c9a7fd30e23801bdb~mv2.png"
-            }
-          />
+          <RiLoader2Line size="100" color="#959595" />
+          <Button
+            onClick={handleSubmit}
+            width="220px"
+            height="50px"
+            variant={ButtonVariant.contained}
+          >
+            <Text size={"1.1rem"}>확인</Text>
+          </Button>
         </BookCard>
-
-        <Button
-          onClick={handleSubmit}
-          width="350px"
-          height="50px"
-          variant={ButtonVariant.contained}
-        >
-          <Text size={"1.2rem"}>확 인</Text>
-        </Button>
       </Flex>
     </>
   );

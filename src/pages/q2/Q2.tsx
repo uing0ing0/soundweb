@@ -8,8 +8,8 @@ import styled, { CSSProperties } from "styled-components";
 import React, { useRef, useState } from "react";
 import Font from "src/styles/Font";
 import Image from "src/atoms/image/Image";
-import { CiPlay1 } from "react-icons/ci";
-import { CiPause1 } from "react-icons/ci";
+import { FaRegCirclePlay } from "react-icons/fa6";
+import { FaRegCirclePause } from "react-icons/fa6";
 
 interface PanelProps {
   color?: CSSProperties["backgroundColor"];
@@ -18,9 +18,10 @@ interface PanelProps {
 }
 
 const BookCard = styled.div<PanelProps>`
+  position: relative;
   background-color: ${({ color }) => color};
   border-radius: 16px;
-  padding: 16px;
+  padding: 0px;
   border: 3px solid #fff;
   box-shadow: ${({ color }) =>
     color
@@ -32,7 +33,7 @@ const BookCard = styled.div<PanelProps>`
   margin: 20px;
   align-items: center;
   justify-content: center;
-  padding: 25px;
+  padding: 30px;
   gap: 30px;
 `;
 
@@ -42,6 +43,7 @@ const QuestionCard = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const togglePlayPause = () => {
+    console.log("플레이/일시정지 전환");
     if (audioRef.current) {
       if (isPlaying) {
         audioRef.current.pause();
@@ -60,48 +62,71 @@ const QuestionCard = () => {
   return (
     <>
       <Flex flexDirection="column" alignItems="center" gap="20px">
-        <BookCard width={"300px"} height={"400px"}>
-          <Text color={colorSet.text} size={"2.0rem"} font={Font.Bold}>
-            2 단계
+        <BookCard width={"300px"} height={"500px"}>
+          <Text
+            textAlign="left"
+            color={colorSet.text}
+            size={"1.3rem"}
+            font={Font.Bold}
+          >
+            <br />
+            설정단계
+            <br />
+            Step 2
+          </Text>
+          <Text
+            textAlign="left"
+            color={colorSet.secondaryText}
+            size={"0.8rem"}
+            font={Font.Bold}
+          >
+            <br />
+            소리를 듣고 들리면 O 안들리면 X 버튼을 눌러주세요.
             <br />
             <br />
           </Text>
-          <Image
-            src={"https://cdn-icons-png.flaticon.com/512/3771/3771046.png"}
-            width={200}
-          />
+
           <Text color={colorSet.text} size={"2.0rem"} font={Font.Bold}>
             <br />
           </Text>
 
-          <audio ref={audioRef} src="/q1/1.mp3" />
+          <audio ref={audioRef} src="D:\soundweb\soundweb\public\1.mp3" />
           <button
-            style={{ width: "100px", height: "55px", border: "none" }}
+            style={{
+              color: "#ffffff",
+              width: "150px",
+              height: "150px",
+              border: "none",
+            }}
             onClick={togglePlayPause}
           >
-            {isPlaying ? <CiPause1 /> : <CiPlay1 />}
+            {isPlaying ? (
+              <FaRegCirclePause size="100" color="#959595" />
+            ) : (
+              <FaRegCirclePlay size="100" color="#959595" />
+            )}
           </button>
+          <Flex gap="20px">
+            <Button
+              onClick={handleSubmit}
+              width="130px"
+              height="50px"
+              variant={ButtonVariant.o}
+            >
+              <Text color={colorSet.colorless} size={"1.0rem"}>
+                O
+              </Text>
+            </Button>
+            <Button
+              onClick={handleSubmit}
+              width="130px"
+              height="50px"
+              variant={ButtonVariant.x}
+            >
+              <Text size={"1.0rem"}>X</Text>
+            </Button>
+          </Flex>
         </BookCard>
-        <Flex gap="20px">
-          <Button
-            onClick={handleSubmit}
-            width="170px"
-            height="50px"
-            variant={ButtonVariant.grey}
-          >
-            <Text color={colorSet.text} size={"1.2rem"}>
-              잘 안 들림
-            </Text>
-          </Button>
-          <Button
-            onClick={handleSubmit}
-            width="170px"
-            height="50px"
-            variant={ButtonVariant.contained}
-          >
-            <Text size={"1.2rem"}>잘 들림</Text>
-          </Button>
-        </Flex>
       </Flex>
     </>
   );

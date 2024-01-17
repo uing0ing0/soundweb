@@ -13,10 +13,10 @@ interface PanelProps {
   height?: CSSProperties["height"];
 }
 const BookCard = styled.div<PanelProps>`
+  position: relative;
   background-color: ${({ color }) => color};
   border-radius: 16px;
-  padding: 16px;
-
+  padding: 0px;
   border: 3px solid #fff;
   box-shadow: ${({ color }) =>
     color
@@ -28,7 +28,7 @@ const BookCard = styled.div<PanelProps>`
   margin: 20px;
   align-items: center;
   justify-content: center;
-  padding: 25px;
+  padding: 30px;
   gap: 30px;
 `;
 
@@ -42,22 +42,23 @@ const QuestionCard = () => {
     <>
       <Flex flexDirection="column" alignItems="center" gap="20px">
         <BookCard width={"300px"} height={"500px"}>
-          <Text color={colorSet.text} size={"3.0rem"} font={Font.Bold}>
+          <Text color={colorSet.primary} size={"3.0rem"} font={Font.Bold}>
             <br />
-            나만의
             <br />
-            음악찾기
+            OralFlow
+            <br />
+            Sound
             <br />
             <br />
             <br />
           </Text>
           <Button
             onClick={handleSubmit}
-            width="250px"
-            height="60px"
+            width="220px"
+            height="50px"
             variant={ButtonVariant.contained}
           >
-            <Text size={"1.5rem"}>여정 시작하기</Text>
+            <Text size={"1.3rem"}>Start</Text>
           </Button>
         </BookCard>
       </Flex>

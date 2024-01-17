@@ -18,9 +18,10 @@ interface PanelProps {
 }
 
 const BookCard = styled.div<PanelProps>`
+  position: relative;
   background-color: ${({ color }) => color};
   border-radius: 16px;
-  padding: 16px;
+  padding: 0px;
   border: 3px solid #fff;
   box-shadow: ${({ color }) =>
     color
@@ -32,10 +33,9 @@ const BookCard = styled.div<PanelProps>`
   margin: 20px;
   align-items: center;
   justify-content: center;
-  padding: 25px;
+  padding: 30px;
   gap: 30px;
 `;
-
 const QuestionCard = () => {
   const navigate = useNavigate();
   const [isPlaying, setIsPlaying] = useState(false);
@@ -60,23 +60,34 @@ const QuestionCard = () => {
   return (
     <>
       <Flex flexDirection="column" alignItems="center" gap="20px">
-        <BookCard width={"300px"} height={"400px"}>
-          <Text color={colorSet.text} size={"2.0rem"} font={Font.Bold}>
-            나를 위한 노래
+        <BookCard width={"300px"} height={"500px"}>
+          <Text
+            textAlign="left"
+            color={colorSet.text}
+            size={"1.3rem"}
+            font={Font.Bold}
+          >
+            <br />
+            음악감상
+            <br />
             <br />
             <br />
           </Text>
           <Image
             src={"https://cdn-icons-png.flaticon.com/512/3771/3771046.png"}
-            width={200}
+            width={100}
           />
-          <Text color={colorSet.text} size={"1.0rem"} font={Font.Bold}>
+          <Text
+            textAlign="center"
+            color={colorSet.text}
+            size={"1.0rem"}
+            font={Font.Bold}
+          >
             <br />
             노래 이름
             <br />
             <br />
           </Text>
-
           <audio ref={audioRef} src="/q1/1.mp3" />
           <button
             style={{ width: "100px", height: "55px", border: "none" }}
@@ -84,16 +95,16 @@ const QuestionCard = () => {
           >
             {isPlaying ? <CiPause1 /> : <CiPlay1 />}
           </button>
-        </BookCard>
 
-        <Button
-          onClick={handleSubmit}
-          width="350px"
-          height="50px"
-          variant={ButtonVariant.contained}
-        >
-          <Text size={"1.2rem"}>다시 찾기</Text>
-        </Button>
+          <Button
+            onClick={handleSubmit}
+            width="220px"
+            height="50px"
+            variant={ButtonVariant.contained}
+          >
+            <Text size={"1.3rem"}>다시하기</Text>
+          </Button>
+        </BookCard>
       </Flex>
     </>
   );
