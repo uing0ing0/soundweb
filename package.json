@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build --mode ${VITE_MODE}",
+    "build": "tsc && VITE_MODE=staging vite build",
     "preview": "vite preview",
     "lint": "eslint src/",
     "predeploy": "CI= yarn build",
