@@ -51,5 +51,6 @@
     "vite-tsconfig-paths": "^4.0.3"
   },
   "packageManager": "yarn@4.0.2",
-  "proxy": "https://dev-api.nomini.io"
+  "proxy": "https://dev-api.nomini.io",
+  "homepage": "https://main--aquamarine-bombolone-521e54.netlify.app/"
 }
