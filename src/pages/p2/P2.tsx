@@ -2,11 +2,11 @@ import { useNavigate } from "react-router-dom";
 import Button, { ButtonVariant } from "src/atoms/button/Button";
 import Flex from "src/atoms/containers/flex/Flex";
 import Image from "src/atoms/image/Image";
-import SearchInput from "src/atoms/searchInput/SearchInput";
+//import SearchInput from "src/atoms/searchInput/SearchInput";
 import Text from "src/atoms/text/Text";
 import colorSet from "src/styles/colorSet";
-import styled, { CSSProperties } from "styled-components";
 import Font from "src/styles/Font";
+import styled, { CSSProperties } from "styled-components";
 
 interface PanelProps {
   color?: CSSProperties["backgroundColor"];

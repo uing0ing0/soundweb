@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Button, { ButtonVariant } from "src/atoms/button/Button";
 import Flex from "src/atoms/containers/flex/Flex";
-import SearchInput from "src/atoms/searchInput/SearchInput";
+//import SearchInput from "src/atoms/searchInput/SearchInput";
 import Text from "src/atoms/text/Text";
 import colorSet from "src/styles/colorSet";
 import Font from "src/styles/Font";

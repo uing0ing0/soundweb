@@ -36,5 +36,5 @@ export default defineConfig({
     }),
     svgr(),
   ],
-  mode: process.env.NODE_ENV,
+  mode: process.env.VITE_MODE,
 });
